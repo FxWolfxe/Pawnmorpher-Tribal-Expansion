@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A7764C57-2CF3-47C6-BA84-1F5B7D47F3BB}</ProjectGuid>
+    <ProjectGuid>{9009720A-242A-4C9D-987C-489C7C182A86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PMTribal</RootNamespace>
-    <AssemblyName>PMTribal</AssemblyName>
+    <RootNamespace>MealsRespectRestrictions</RootNamespace>
+    <AssemblyName>MealsRespectRestrictions</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,10 +33,6 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Pawnmorph">
-      <HintPath>..\..\Dependencies\Pawnmorph.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -138,21 +133,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defs.cs" />
-    <Compile Include="IngestionOutcomeDoer_MutagenicFood.cs" />
-    <Compile Include="MorphMeatUtilities.cs" />
-    <Compile Include="MutaniteIngredientGetter.cs" />
-    <Compile Include="PMTribalInit.cs" />
+    <Compile Include="FoodRestrictionPatches.cs" />
+    <Compile Include="MRRInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll" />
+    <Compile Include="ShouldCountIngredients.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

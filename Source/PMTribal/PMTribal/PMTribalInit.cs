@@ -25,6 +25,18 @@ namespace PMTribal
                 Log.Error($"caught {e.GetType().Name} while patching {HARMONY_ID}!\n{e}");
             }
         }
+
+        static void DoPatches(Harmony har)
+        {
+            //bill patches 
+
+
+
+
+        }
+
+
+
     }
 
 
