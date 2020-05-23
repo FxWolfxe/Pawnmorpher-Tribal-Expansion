@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Pawnmorph;
+using Pawnmorph.Utilities;
 using Verse;
 
 namespace PMTribal
@@ -28,6 +29,21 @@ namespace PMTribal
                 }
 
                 lst.Add(morph);
+
+                foreach (ThingDef race in morph.associatedAnimals.MakeSafe())
+                {
+                    var rMeat = race.race?.meatDef; 
+                    if(rMeat == null) continue;
+                    if (!_meatLookupDict.TryGetValue(rMeat, out  lst))
+                    {
+                        lst = new List<MorphDef>();
+                        _meatLookupDict[raceMeat] = lst;
+                    }
+
+                    lst.Add(morph); 
+
+                }
+
             }
         }
 
