@@ -20,9 +20,22 @@ namespace PMTribal.Patches
             if (__result)
             {
                 var relation = humanlike.relations.DirectRelations.First(r => r.otherPawn == animal);
-                foreach (BondedAspect bondedAspect in (humanlike.GetAspectTracker()?.Aspects).MakeSafe().OfType<BondedAspect>())
+                bool any = false;
+                AspectTracker aspectTracker = humanlike.GetAspectTracker();
+                if (aspectTracker == null) return; 
+                foreach (BondedAspect bondedAspect in aspectTracker.Aspects.OfType<BondedAspect>())
                 {
+                    any = true; 
                     bondedAspect.Notify_BondedToAnimal(relation); 
+                }
+
+                var mOutlook = humanlike.GetMutationOutlook();
+                if (!any && (mOutlook == MutationOutlook.Furry || mOutlook == MutationOutlook.PrimalWish))
+                {
+                    if (Rand.Value < LoadedModManager.GetMod<PMTribalMod>().Settings.totemAspectAddChance)
+                    {
+                        aspectTracker.Add(Defs.Aspects.TotemAspect); 
+                    } 
                 }
             }
         }

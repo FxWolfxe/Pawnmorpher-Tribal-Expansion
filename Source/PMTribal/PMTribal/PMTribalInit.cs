@@ -3,6 +3,7 @@
 
 using System;
 using HarmonyLib;
+using UnityEngine;
 using Verse;
 
 namespace PMTribal
@@ -42,8 +43,39 @@ namespace PMTribal
 
     public class PMTribalMod : Mod
     {
+        public PMTribalSettings Settings { get; }
+
         public PMTribalMod(ModContentPack content) : base(content)
         {
+            Settings = GetSettings<PMTribalSettings>(); 
         }
+
+        public override void DoSettingsWindowContents(Rect inRect)
+        {
+            var ls = new Listing_Standard(); 
+            ls.Begin(inRect);
+            ls.Label("TotemAspectAddChanceLabel".Translate(Settings.totemAspectAddChance
+                                                                   .ToStringByStyle(ToStringStyle.PercentOne)));
+            Settings.totemAspectAddChance = ls.Slider(Settings.totemAspectAddChance, 0, 1); 
+            ls.End();
+            base.DoSettingsWindowContents(inRect);
+
+        }
+
+        public override string SettingsCategory()
+        {
+            return "PMTribalModName".Translate(); 
+        }
+
+        public override void WriteSettings()
+        {
+            base.WriteSettings();
+
+        }
+    }
+
+    public class PMTribalSettings : ModSettings
+    {
+        public float totemAspectAddChance = 0.2f; 
     }
 }
