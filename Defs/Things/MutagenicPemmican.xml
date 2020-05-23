@@ -26,7 +26,7 @@
                     <chance>1</chance>
                     <addChance>0.035</addChance>
                     <partialCountRange>1~5</partialCountRange>
-                    <fullHediffChance>0.005</fullHediffChance>
+                    <fullHediffChance>0.001</fullHediffChance>
                 </li>
             </outcomeDoers>
             <foodType>Meal</foodType>
