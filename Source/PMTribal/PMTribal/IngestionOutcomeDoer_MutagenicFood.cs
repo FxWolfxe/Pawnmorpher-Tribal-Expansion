@@ -14,8 +14,9 @@ namespace PMTribal
     
     public class IngestionOutcomeDoer_MutagenicFood : IngestionOutcomeDoer
     {
-        public float fullHediffChance = 0.05f;
-        public float addChance = 0.50f; 
+        public float addChance = 0.50f;
+
+        public SimpleCurve fullHediffChanceCurve; 
 
         public IntRange partialCountRange = new IntRange(1, 1); 
 
@@ -23,7 +24,6 @@ namespace PMTribal
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
-            Log.Message($"{pawn.Label} ingested {ingested.Label}");
             var comp = ingested.TryGetComp<CompIngredients>();
             if (comp?.ingredients == null)
             {
@@ -43,24 +43,23 @@ namespace PMTribal
                 }
             }
 
-            StringBuilder builder = new StringBuilder(); 
+            float c = _scratchDict.Count; 
 
             foreach (KeyValuePair<MorphDef, int> keyValuePair in _scratchDict)
             {
-                builder.AppendLine($"{keyValuePair.Key.defName}:");
-                var totalAddChance = 1 - Mathf.Pow(1 - addChance, keyValuePair.Value * ingested.stackCount);
-                builder.AppendLine($"{nameof(totalAddChance)}:{totalAddChance.ToStringByStyle(ToStringStyle.PercentOne)}"
-                                      .Indented("|\t"));
+                MorphDef morphDef = keyValuePair.Key;
+                var totalAddChance = 1 - Mathf.Pow(1 - addChance/c, keyValuePair.Value * ingested.stackCount);
                 if (Rand.Value < totalAddChance)
                 {
-                    var fullTfChance = 1 - Mathf.Pow(1 - fullHediffChance, keyValuePair.Value * ingested.stackCount);
-                    HediffDef defToAdd;
-                    if (Rand.Value < fullTfChance)
-                    {
-                        defToAdd = keyValuePair.Key.fullTransformation;
-                    }
-                    else
-                        defToAdd = keyValuePair.Key.partialTransformation;
+                    Hediff partialHediff = pawn.health.hediffSet.GetFirstHediffOfDef(morphDef.partialTransformation);
+
+                    var singleComp = partialHediff?.TryGetComp<HediffComp_Single>();
+                    int stacks = singleComp?.stacks ?? 0;
+
+                    var fullMorphChance = fullHediffChanceCurve?.Evaluate(stacks) ?? 0;
+                    fullMorphChance = 1 - Mathf.Pow(1 - fullMorphChance, keyValuePair.Value * ingested.stackCount); 
+                    HediffDef defToAdd = Rand.Value < fullMorphChance ? 
+                        morphDef.fullTransformation : morphDef.partialTransformation;
 
                     var hediff = HediffMaker.MakeHediff(defToAdd, pawn);
                     var compSingle = hediff.TryGetComp<HediffComp_Single>();
@@ -73,9 +72,7 @@ namespace PMTribal
                 }
             }
 
-            if (builder.Length == 0) Log.Message($"cannot find morph hediff to add!");
-            else Log.Message(builder.ToString()); 
-
+            
         }
     }
 }

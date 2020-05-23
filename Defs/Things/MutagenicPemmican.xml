@@ -24,9 +24,19 @@
             <outcomeDoers>
                 <li Class="PMTribal.IngestionOutcomeDoer_MutagenicFood">
                     <chance>1</chance>
-                    <addChance>0.035</addChance>
+                    <addChance>0.07</addChance>
                     <partialCountRange>1~5</partialCountRange>
+                    <!--
                     <fullHediffChance>0.001</fullHediffChance>
+                    -->
+                    <fullHediffChanceCurve>
+                        <points>
+                            <li>0,0</li>
+                            <li>3,0.00015</li>
+                            <li>5,0.0005</li>
+                            <li>7,0.001</li>
+                        </points>
+                    </fullHediffChanceCurve>
                 </li>
             </outcomeDoers>
             <foodType>Meal</foodType>
@@ -44,7 +54,7 @@
             <li Class="CompProperties_FoodPoisonable" />
         </comps>
         <modExtensions>
-            <li Class="MealsRespectRestrictions.ShouldCountIngredients" >
+            <li Class="MealsRespectRestrictions.ShouldCountIngredients">
                 <careFilter>
                     <categories>
                         <li>MeatRaw</li>
