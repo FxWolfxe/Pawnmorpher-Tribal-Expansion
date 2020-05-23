@@ -7,6 +7,6 @@ namespace MealsRespectRestrictions
 {
     public class ShouldCountIngredients : DefModExtension
     {
-        //empty 
+        public ThingFilter careFilter; 
     }
 }

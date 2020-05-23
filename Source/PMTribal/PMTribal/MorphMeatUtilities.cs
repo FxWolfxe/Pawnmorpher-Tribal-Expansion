@@ -37,13 +37,21 @@ namespace PMTribal
                     if (!_meatLookupDict.TryGetValue(rMeat, out  lst))
                     {
                         lst = new List<MorphDef>();
-                        _meatLookupDict[raceMeat] = lst;
+                        _meatLookupDict[rMeat] = lst;
                     }
 
                     lst.Add(morph); 
 
                 }
 
+            }
+        }
+
+        public static IEnumerable<ThingDef> AllAssociatedMeats([NotNull] this MorphDef morph)
+        {
+            foreach (KeyValuePair<ThingDef, List<MorphDef>> kvp in _meatLookupDict)
+            {
+                if (kvp.Value.Contains(morph)) yield return kvp.Key;
             }
         }
 

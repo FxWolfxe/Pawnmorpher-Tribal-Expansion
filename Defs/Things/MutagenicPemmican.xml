@@ -1,0 +1,196 @@
+<Defs>
+    <ThingDef ParentName="OrganicProductBase">
+        <defName>MutagenicPemmican</defName>
+        <label>mutagenic pemmican</label>
+        <description>A preserved mashed mixture of fat and plant food. Tastes bland, but not offensive. It lasts a very long time without refrigeration. Great for traveling.</description>
+        <thingClass>ThingWithComps</thingClass>
+        <thingCategories>
+            <li>Foods</li>
+        </thingCategories>
+        <graphicData>
+            <texPath>Things/Item/Resource/Pemmican</texPath>
+            <graphicClass>Graphic_StackCount</graphicClass>
+        </graphicData>
+        <socialPropernessMatters>true</socialPropernessMatters>
+        <statBases>
+            <MarketValue>1.4</MarketValue>
+            <Mass>0.018</Mass>
+            <Flammability>0.6</Flammability>
+            <WorkToMake>700</WorkToMake>
+            <DeteriorationRate>2</DeteriorationRate>
+            <Nutrition>0.05</Nutrition>
+        </statBases>
+        <ingestible>
+            <outcomeDoers>
+                <li Class="PMTribal.IngestionOutcomeDoer_MutagenicFood">
+                    <chance>1</chance>
+                    <addChance>0.035</addChance>
+                    <partialCountRange>1~5</partialCountRange>
+                    <fullHediffChance>0.005</fullHediffChance>
+                </li>
+            </outcomeDoers>
+            <foodType>Meal</foodType>
+            <preferability>MealSimple</preferability>
+            <ingestEffect>EatVegetarian</ingestEffect>
+            <ingestSound>Meal_Eat</ingestSound>
+            <optimalityOffsetHumanlikes>6</optimalityOffsetHumanlikes>
+        </ingestible>
+        <comps>
+            <li Class="CompProperties_Rottable">
+                <daysToRotStart>70</daysToRotStart>
+                <rotDestroys>true</rotDestroys>
+            </li>
+            <li Class="CompProperties_Ingredients" />
+            <li Class="CompProperties_FoodPoisonable" />
+        </comps>
+        <modExtensions>
+            <li Class="MealsRespectRestrictions.ShouldCountIngredients" >
+                <careFilter>
+                    <categories>
+                        <li>MeatRaw</li>
+                    </categories>
+                </careFilter>
+            </li>
+        </modExtensions>
+    </ThingDef>
+
+    <RecipeDef>
+        <defName>Make_MutagenicPemmican</defName>
+        <label>make mutagenic pemmican</label>
+        <description>Make pemmican, a preserved combination of meat and plant food. It doesn't taste amazing, but lasts a long time without refrigeration.</description>
+        <jobString>Making pemmican.</jobString>
+        <workAmount>700</workAmount>
+        <workSpeedStat>CookSpeed</workSpeedStat>
+        <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_CookMeal</soundWorking>
+        <allowMixingIngredients>true</allowMixingIngredients>
+        <ingredientValueGetterClass>PMTribal.MutaniteIngredientGetter</ingredientValueGetterClass>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>MeatRaw</li>
+                    </categories>
+                </filter>
+                <count>0.75</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>PlantFoodRaw</li>
+                    </categories>
+                </filter>
+                <count>0.11</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>RawMutagen</li>
+                    </categories>
+                </filter>
+                <count>0.1</count>
+            </li>
+        </ingredients>
+        <products>
+            <MutagenicPemmican>16</MutagenicPemmican>
+        </products>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <fixedIngredientFilter>
+            <categories>
+                <li>FoodRaw</li>
+                <li>RawMutagen</li>
+            </categories>
+            <disallowedCategories>
+                <li>AnimalProductRaw</li>
+            </disallowedCategories>
+            <specialFiltersToDisallow>
+                <li>AllowPlantFood</li>
+            </specialFiltersToDisallow>
+        </fixedIngredientFilter>
+        <defaultIngredientFilter>
+            <categories>
+                <li>FoodRaw</li>
+            </categories>
+            <disallowedThingDefs>
+                <li>Meat_Human</li>
+                <li>Meat_Megaspider</li>
+            </disallowedThingDefs>
+        </defaultIngredientFilter>
+        <workSkill>Cooking</workSkill>
+        <researchPrerequisite>Pemmican</researchPrerequisite>
+    </RecipeDef>
+
+    <RecipeDef>
+        <defName>Make_MutagenicPemmicanBulk</defName>
+        <label>make mutagenic pemmican x4</label>
+        <description>Make bulk pemmican, a preserved combination of meat and plant food. It doesn't taste amazing, but lasts a long time without refrigeration.</description>
+        <jobString>Making bulk pemmican.</jobString>
+        <workAmount>2800</workAmount>
+        <workSpeedStat>CookSpeed</workSpeedStat>
+        <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+        <effectWorking>Cook</effectWorking>
+        <soundWorking>Recipe_CookMeal</soundWorking>
+        <allowMixingIngredients>true</allowMixingIngredients>
+        <ingredientValueGetterClass>PMTribal.MutaniteIngredientGetter</ingredientValueGetterClass>
+        <recipeUsers>
+            <li>ElectricStove</li>
+            <li>FueledStove</li>
+        </recipeUsers>
+        <ingredients>
+            <li>
+                <filter>
+                    <categories>
+                        <li>MeatRaw</li>
+                    </categories>
+                </filter>
+                <count>2.5</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>PlantFoodRaw</li>
+                    </categories>
+                </filter>
+                <count>0.4</count>
+            </li>
+            <li>
+                <filter>
+                    <categories>
+                        <li>RawMutagen</li>
+                    </categories>
+                </filter>
+                <count>0.35</count>
+            </li>
+        </ingredients>
+        <products>
+            <MutagenicPemmican>64</MutagenicPemmican>
+        </products>
+        <fixedIngredientFilter>
+            <categories>
+                <li>FoodRaw</li>
+                <li>RawMutagen</li>
+            </categories>
+            <disallowedCategories>
+                <li>AnimalProductRaw</li>
+            </disallowedCategories>
+            <specialFiltersToDisallow>
+                <li>AllowPlantFood</li>
+            </specialFiltersToDisallow>
+        </fixedIngredientFilter>
+        <defaultIngredientFilter>
+            <categories>
+                <li>FoodRaw</li>
+            </categories>
+            <disallowedThingDefs>
+                <li>Meat_Human</li>
+                <li>Meat_Megaspider</li>
+            </disallowedThingDefs>
+        </defaultIngredientFilter>
+        <workSkill>Cooking</workSkill>
+        <researchPrerequisite>Pemmican</researchPrerequisite>
+    </RecipeDef>
+</Defs>

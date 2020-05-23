@@ -23,8 +23,8 @@ namespace PMTribal
           
             
             var amount = ing.GetBaseCount();
-
-            return MUTANITE_RECIPE_REQ.Translate(amount.ToStringByStyle(ToStringStyle.FloatMaxTwo));
+        
+            return MUTANITE_RECIPE_REQ.Translate(amount.ToStringByStyle(ToStringStyle.FloatMaxTwo)) + $"({ing.Summary})";
         }
     }
 }

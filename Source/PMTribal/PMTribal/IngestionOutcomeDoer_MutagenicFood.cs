@@ -3,6 +3,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Pawnmorph;
 using RimWorld;
 using UnityEngine;
@@ -15,7 +16,6 @@ namespace PMTribal
     {
         public float fullHediffChance = 0.05f;
         public float addChance = 0.50f; 
-        public bool additive; 
 
         public IntRange partialCountRange = new IntRange(1, 1); 
 
@@ -23,12 +23,18 @@ namespace PMTribal
 
         protected override void DoIngestionOutcomeSpecial(Pawn pawn, Thing ingested)
         {
+            Log.Message($"{pawn.Label} ingested {ingested.Label}");
             var comp = ingested.TryGetComp<CompIngredients>();
-            if (comp?.ingredients == null) return; 
+            if (comp?.ingredients == null)
+            {
+                Log.Warning($"could not get comp ingredient on {ingested.Label}!");
+                
+                return;
+            } 
             _scratchDict.Clear();
             foreach (ThingDef thingDef in comp.ingredients)
             {
-                if(!thingDef.IsMeat) return;
+                if(!thingDef.IsMeat) continue;
                 foreach (MorphDef morphDef in MorphMeatUtilities.GetMorphsOfMeat(thingDef))
                 {
                     if(morphDef.fullTransformation == null || morphDef.partialTransformation == null) continue;
@@ -37,13 +43,17 @@ namespace PMTribal
                 }
             }
 
+            StringBuilder builder = new StringBuilder(); 
+
             foreach (KeyValuePair<MorphDef, int> keyValuePair in _scratchDict)
             {
-                var totalAddChance = 1- Mathf.Pow(1 - addChance, keyValuePair.Value);
-
+                builder.AppendLine($"{keyValuePair.Key.defName}:");
+                var totalAddChance = 1 - Mathf.Pow(1 - addChance, keyValuePair.Value * ingested.stackCount);
+                builder.AppendLine($"{nameof(totalAddChance)}:{totalAddChance.ToStringByStyle(ToStringStyle.PercentOne)}"
+                                      .Indented("|\t"));
                 if (Rand.Value < totalAddChance)
                 {
-                    var fullTfChance = 1 - Mathf.Pow(1 - fullHediffChance, keyValuePair.Value);
+                    var fullTfChance = 1 - Mathf.Pow(1 - fullHediffChance, keyValuePair.Value * ingested.stackCount);
                     HediffDef defToAdd;
                     if (Rand.Value < fullTfChance)
                     {
@@ -56,12 +66,15 @@ namespace PMTribal
                     var compSingle = hediff.TryGetComp<HediffComp_Single>();
                     if (compSingle != null)
                     {
-                        compSingle.stacks = partialCountRange.RandomInRange; 
+                        compSingle.stacks = partialCountRange.RandomInRange;
                     }
 
                     pawn.health.AddHediff(hediff); 
                 }
             }
+
+            if (builder.Length == 0) Log.Message($"cannot find morph hediff to add!");
+            else Log.Message(builder.ToString()); 
 
         }
     }
