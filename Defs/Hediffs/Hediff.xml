@@ -1,0 +1,13 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/HediffDef.xsd">
+<HediffDef ParentName="MorphParent">
+    <defName>TotemAspectHediff</defName>
+    <hediffClass>PMTribal.Hediffs.TotemHediff</hediffClass>
+    <label>totem hediff</label>
+    <description>TODO</description>
+    <stages>
+        <li Class="PMTribal.Hediffs.TotemStage">
+
+        </li>
+    </stages>
+</HediffDef>
+</Defs>

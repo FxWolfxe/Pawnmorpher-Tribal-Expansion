@@ -135,6 +135,7 @@
 	<xs:simpleType name="CustomHediffStages">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="Pawnmorph.Hediffs.DescriptiveStage" />
+			<xs:enumeration value="PMTribal.Hediffs.TotemStage" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

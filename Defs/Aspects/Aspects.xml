@@ -1,0 +1,11 @@
+<Defs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/AspectDef.xsd" >
+    <Pawnmorph.AspectDef>
+        <aspectType>PMTribal.Aspects.BondedAspect</aspectType>
+        <defName>TotemAspect</defName>
+        <label>totem aspect</label>
+        <description>TODO</description>
+        <stages>
+            <li></li>
+        </stages>
+    </Pawnmorph.AspectDef>
+</Defs>
