@@ -3742,6 +3742,14 @@
             <seealso cref="T:Pawnmorph.IDescriptiveHediff" />
             <seealso cref="T:Verse.Hediff" />
         </member>
+        <member name="P:Pawnmorph.Hediffs.TransformationBase.BlocksRaceCheck">
+            <summary>
+            Gets a value indicating whether this transformation hediff blocks the race checking 
+            </summary>
+            <value>
+              <c>true</c> if this transformation hediff blocks the race checking; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="M:Pawnmorph.Hediffs.TransformationBase.DebugString">
             <summary>
             Creates a debug string for this hediff 
