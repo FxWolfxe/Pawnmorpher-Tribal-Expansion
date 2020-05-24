@@ -13,6 +13,14 @@ namespace PMTribal.Hediffs
         /// <value>
         ///   <c>true</c> if this instance should be removed; otherwise, <c>false</c>.
         /// </value>
-        public override bool ShouldRemove => false; 
+        public override bool ShouldRemove => false;
+
+        /// <summary>
+        /// Gets a value indicating whether this transformation hediff blocks the race checking
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this transformation hediff blocks the race checking; otherwise, <c>false</c>.
+        /// </value>
+        public override bool BlocksRaceCheck => false; 
     }
 }
