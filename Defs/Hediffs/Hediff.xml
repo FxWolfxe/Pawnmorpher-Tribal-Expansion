@@ -28,12 +28,12 @@
                 <label>initial</label>
                 <minSeverity>0.04</minSeverity>
         
-                <meanMutationsPerDay>35</meanMutationsPerDay>
+                <meanMutationsPerDay>7</meanMutationsPerDay>
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
                 <label>minor</label>
                 <minSeverity>0.2</minSeverity>
-                <meanMutationsPerDay>70</meanMutationsPerDay>
+                <meanMutationsPerDay>15</meanMutationsPerDay>
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
                 <label>moderate</label>
@@ -45,7 +45,7 @@
                         <offset>-0.05</offset>
                     </li>
                 </capMods>
-                <meanMutationsPerDay>150</meanMutationsPerDay>
+                <meanMutationsPerDay>35</meanMutationsPerDay>
 
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
@@ -58,7 +58,7 @@
                         <offset>-0.15</offset>
                     </li>
                 </capMods>
-                <meanMutationsPerDay>250</meanMutationsPerDay>
+                <meanMutationsPerDay>125</meanMutationsPerDay>
 
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
@@ -72,19 +72,19 @@
                         <setMax>0.70</setMax>
                     </li>
                 </capMods>
-                <meanMutationsPerDay>300</meanMutationsPerDay>
+                <meanMutationsPerDay>150</meanMutationsPerDay>
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
                 <minSeverity>0.85</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.4</painOffset>
-                <meanMutationsPerDay>450</meanMutationsPerDay>
+                <meanMutationsPerDay>225</meanMutationsPerDay>
             </li>
             <li Class="PMTribal.Hediffs.TargetedBuildupStage">
                 <minSeverity>0.99</minSeverity>
                 <label>extreme</label>
                 <painOffset>0.7</painOffset>
-                <meanMutationsPerDay>900</meanMutationsPerDay>
+                <meanMutationsPerDay>450</meanMutationsPerDay>
             </li>
         </stages>
     </HediffDef>

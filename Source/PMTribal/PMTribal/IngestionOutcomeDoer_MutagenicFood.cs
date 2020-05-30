@@ -15,11 +15,8 @@ namespace PMTribal
     
     public class IngestionOutcomeDoer_MutagenicFood : IngestionOutcomeDoer
     {
-        public float addChance = 0.50f;
-        public float severityPerServing = 0.007f; 
-        public SimpleCurve fullHediffChanceCurve; 
+        public float severityPerServing = 0.01f; 
 
-        public IntRange partialCountRange = new IntRange(1, 1); 
 
         private static readonly Dictionary<MorphDef,int> _scratchDict = new Dictionary<MorphDef,int>(); 
 
@@ -45,7 +42,7 @@ namespace PMTribal
             }
 
             float c = _scratchDict.Count;
-            float severityToAdd = ingested.stackCount * severityPerServing * Rand.Range(0.7f, 1.2f);
+            float severityToAdd = ingested.stackCount * severityPerServing * Rand.Range(0.7f, 2.5f);
             severityToAdd = pawn.GetMutagenicBuildupMultiplier() * severityToAdd;
             var hediff = (TargetedMutagenicBuildup) pawn.health.hediffSet.GetFirstHediffOfDef(Defs.Hediffs.MutagenicFoodBuildup);
             if (hediff == null)
