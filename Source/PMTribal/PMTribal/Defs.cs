@@ -11,6 +11,16 @@ namespace PMTribal
     {
 
         [DefOf]
+        public static class Things
+        {
+            static Things()
+            {
+                DefOfHelper.EnsureInitializedInCtor(typeof(DefOf));
+            }
+            public static ThingDef MutagenicPemmican; 
+        }
+
+        [DefOf]
         public static class Aspects
         {
             static Aspects()
