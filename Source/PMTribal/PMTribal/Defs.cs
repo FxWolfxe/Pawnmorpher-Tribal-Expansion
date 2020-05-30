@@ -1,6 +1,7 @@
 ﻿// Defs.cs created by Iron Wolf for PMTribal on 05/22/2020 2:02 PM
 // last updated 05/22/2020  2:02 PM
 
+using System.Security.Policy;
 using Pawnmorph;
 using RimWorld;
 using Verse;
@@ -39,7 +40,8 @@ namespace PMTribal
                 DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
             }
 
-            public static HediffDef TotemAspectHediff; 
+            public static HediffDef TotemAspectHediff;
+            public static HediffDef MutagenicFoodBuildup; 
         }   
     }
 }

@@ -141,6 +141,8 @@
     <Compile Include="Aspects\BondedAspect.cs" />
     <Compile Include="DebugUtilities\DbgLogUtilities.cs" />
     <Compile Include="Defs.cs" />
+    <Compile Include="Hediffs\TargetedBuildupStage.cs" />
+    <Compile Include="Hediffs\TargetedMutagenicBuildup.cs" />
     <Compile Include="Hediffs\TotemHediff.cs" />
     <Compile Include="Hediffs\TotemStage.cs" />
     <Compile Include="IngestionOutcomeDoer_MutagenicFood.cs" />
