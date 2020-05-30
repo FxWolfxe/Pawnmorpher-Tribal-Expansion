@@ -14,6 +14,7 @@ namespace PMTribal.Hediffs
         private static readonly Dictionary<MorphDef, List<MutationEntry>> _entryLookup =
             new Dictionary<MorphDef, List<MutationEntry>>();
 
+
         public int period = 60;
 
 
@@ -33,17 +34,19 @@ namespace PMTribal.Hediffs
 
             if (tMb.Targets.Count == 0) return Enumerable.Empty<MutationEntry>();
 
-            Rand.PushState(seed);
-            try
-            {
-                MorphDef morph = tMb.Targets.RandomElement();
 
-                return GetEntriesFor(morph);
-            }
-            finally
+            var lst = new List<MutationEntry>();
+            HashSet<MutationDef> mSet = new HashSet<MutationDef>();
+
+            foreach (MorphDef morph in tMb.Targets)
+            foreach (MutationEntry mutationEntry in GetEntriesFor(morph))
             {
-                Rand.PopState();
+                if(mSet.Contains(mutationEntry.mutation)) continue;
+                lst.Add(mutationEntry);
+                mSet.Add(mutationEntry.mutation); 
             }
+
+            return lst;
         }
 
         private IEnumerable<MutationEntry> GetEntriesFor(MorphDef morph)

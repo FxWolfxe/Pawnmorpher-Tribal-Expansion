@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Pawnmorph;
 using Pawnmorph.Hediffs;
 using Pawnmorph.TfSys;
@@ -16,6 +17,13 @@ namespace PMTribal.Hediffs
 
         private readonly HashSet<MutationDef> _allowedMutations = new HashSet<MutationDef>();
 
+        /// <summary>
+        /// Gets a value indicating whether this transformation hediff blocks the race checking
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this transformation hediff blocks the race checking; otherwise, <c>false</c>.
+        /// </value>
+        public override bool BlocksRaceCheck => false; 
         public IReadOnlyList<MorphDef> Targets => _targets;
 
         /// <summary>Called when the stage changes.</summary>
