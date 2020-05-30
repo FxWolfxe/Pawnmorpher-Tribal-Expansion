@@ -11,19 +11,19 @@ namespace PMTribal
     {
         public override float ValuePerUnitOf(ThingDef t)
         {
-            var n = t.ingestible?.CachedNutrition ?? 0;
+            var n = t.GetStatValueAbstract(StatDefOf.Nutrition);
 
-            return t.statBases.GetStatFactorFromList(PMStatDefOf.MutaniteConcentration) + n; 
+            if (t.StatBaseDefined(PMStatDefOf.MutaniteConcentration))
+                return t.GetStatValueAbstract(PMStatDefOf.MutaniteConcentration);
+            return n; 
         }
 
         public const string MUTANITE_RECIPE_REQ = "MuaniteRecipeReqDescription"; 
-
-        public override string BillRequirementsDescription(RecipeDef r, IngredientCount ing)
-        { 
-          
-            
-            var amount = ing.GetBaseCount();
         
+        public override string BillRequirementsDescription(RecipeDef r, IngredientCount ing)
+        {
+            var amount = ing.GetBaseCount();
+
             return MUTANITE_RECIPE_REQ.Translate(amount.ToStringByStyle(ToStringStyle.FloatMaxTwo)) + $"({ing.Summary})";
         }
     }
