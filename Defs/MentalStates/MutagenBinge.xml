@@ -1,0 +1,14 @@
+<Defs>
+    <MentalBreakDef ParentName="Binging_DrugExtremeBreak">
+        <defName>Binging_Mutagen</defName>
+        <workerClass>PMTribal.MentalStates.MutagenBinge_BreakWorker</workerClass>
+        <mentalState>Binging_Mutagens</mentalState>
+    </MentalBreakDef>
+
+    <MentalStateDef ParentName="Binging_DrugExtremeState">
+        <defName>Binging_Mutagens</defName>
+        <stateClass>PMTribal.MentalStates.MutagenBinge</stateClass>
+        <workerClass>PMTribal.MentalStates.MutagenBinge_StateWorker</workerClass>
+        <drugCategory>Any</drugCategory>
+    </MentalStateDef>
+</Defs>

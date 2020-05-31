@@ -140,16 +140,23 @@
   <ItemGroup>
     <Compile Include="Aspects\BondedAspect.cs" />
     <Compile Include="DebugUtilities\DbgLogUtilities.cs" />
+    <Compile Include="DefExtensions\MutagenicDrug.cs" />
     <Compile Include="Defs.cs" />
     <Compile Include="Hediffs\TargetedBuildupStage.cs" />
     <Compile Include="Hediffs\TargetedMutagenicBuildup.cs" />
     <Compile Include="Hediffs\TotemHediff.cs" />
     <Compile Include="Hediffs\TotemStage.cs" />
     <Compile Include="IngestionOutcomeDoer_MutagenicFood.cs" />
+    <Compile Include="Jobs\Driver_MutagenBinge.cs" />
+    <Compile Include="Jobs\Giver_MutagenBinge.cs" />
+    <Compile Include="MentalStates\MutagenBinge.cs" />
+    <Compile Include="MentalStates\MutagenBinge_BreakWorker.cs" />
     <Compile Include="MorphMeatUtilities.cs" />
     <Compile Include="MutaniteIngredientGetter.cs" />
     <Compile Include="Patches\RelationshipUtilsPatches.cs" />
     <Compile Include="PMTribalInit.cs" />
+    <Compile Include="PMTribalSettingsUtilities.cs" />
+    <Compile Include="PMTribalUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

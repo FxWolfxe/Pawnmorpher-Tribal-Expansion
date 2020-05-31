@@ -1,0 +1,16 @@
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/ChemicalDef[defName="RandomTransformerChemical"]</xpath>
+        <value>
+            <li Class="PMTribal.DefExtensions.MutagenicDrug"> 
+                <mustBeFurryToBinge>true</mustBeFurryToBinge>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[@Name="TransformerBase"]/comps/li[@Class="CompProperties_Drug"]</xpath>
+        <value>
+            <chemical>RandomTransformerChemical</chemical>
+        </value>
+    </Operation>
+</Patch>
