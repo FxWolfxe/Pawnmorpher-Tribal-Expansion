@@ -56,7 +56,8 @@ namespace PMTribal
             ls.Begin(inRect);
             ls.Label("TotemAspectAddChanceLabel".Translate(Settings.totemAspectAddChance
                                                                    .ToStringByStyle(ToStringStyle.PercentOne)));
-            Settings.totemAspectAddChance = ls.Slider(Settings.totemAspectAddChance, 0, 1); 
+            Settings.totemAspectAddChance = ls.Slider(Settings.totemAspectAddChance, 0, 1);
+            ls.CheckboxLabeled("EnableMutagenBingesLabel".Translate(), ref Settings.enableMutagenBinges); 
             ls.End();
             base.DoSettingsWindowContents(inRect);
 
@@ -76,6 +77,8 @@ namespace PMTribal
 
     public class PMTribalSettings : ModSettings
     {
-        public float totemAspectAddChance = 0.2f; 
+        public float totemAspectAddChance = 0.2f;
+        public bool enableMutagenBinges = true; 
+
     }
 }

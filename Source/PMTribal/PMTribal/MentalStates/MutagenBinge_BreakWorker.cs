@@ -6,13 +6,14 @@ using PMTribal.DefExtensions;
 using RimWorld;
 using Verse;
 using Verse.AI;
-
+using static PMTribal.PMTribalSettingsUtilities;
 namespace PMTribal.MentalStates
 {
     public class MutagenBinge_BreakWorker : MentalBreakWorker_BingingDrug
     {
         public override bool BreakCanOccur(Pawn pawn)
         {
+            if (!MutagenBingesEnabled) return false; 
             return pawn.IsFurry() && base.BreakCanOccur(pawn); 
         }
     }
@@ -21,6 +22,8 @@ namespace PMTribal.MentalStates
     {
         bool CanOccurBase(Pawn pawn)
         {
+            if (!MutagenBingesEnabled) return false; 
+
             if (!this.def.unspawnedCanDo && !pawn.Spawned || !this.def.prisonersCanDo && pawn.HostFaction != null || this.def.colonistsOnly && pawn.Faction != Faction.OfPlayer)
                 return false;
             for (int index = 0; index < this.def.requiredCapacities.Count; ++index)

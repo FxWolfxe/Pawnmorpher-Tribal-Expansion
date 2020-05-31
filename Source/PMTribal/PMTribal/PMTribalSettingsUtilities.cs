@@ -9,6 +9,8 @@ namespace PMTribal
     {
         public static PMTribalSettings Settings => LoadedModManager.GetMod<PMTribalMod>().Settings;
 
-        public static float TotemAspectAddChance => Settings.totemAspectAddChance; 
+        public static float TotemAspectAddChance => Settings.totemAspectAddChance;
+
+        public static bool MutagenBingesEnabled => Settings.enableMutagenBinges; 
     }
 }
